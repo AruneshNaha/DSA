@@ -56,10 +56,10 @@ void read()
         while (tmp->next != NULL)
         {
 
-            printf("\t%d\t", tmp->data);
+            printf("%d  ", tmp->data);
             tmp = tmp->next;
         }
-        printf("\t%d", tmp->data);
+        printf("%d ", tmp->data);
     }
 }
 
@@ -155,7 +155,7 @@ void delete ()
     }
 
     //Logic for removing the last element from the node
-    if (tmp->data == num)
+    if (!found && tmp->data == num)
     {
         found = 1;
         prevtmp->next = NULL;
@@ -170,30 +170,86 @@ void delete ()
     read();
 }
 
-// void insertionInNode(){
-//     Node *tmp;
-//     tmp=(Node *)malloc(sizeof(Node));
-//     int num, nodedata;
-//     printf("Enter the node data to insert:");
-//     scanf("%d",&num);
+void insertionInNode()
+{
+    Node *tmp, *tmp2 = head;
+    tmp = (Node *)malloc(sizeof(Node));
+    int num, nodedata, found = 0, nodeAtEnd = 0, nodeAtFront = 0;
+    printf("\nEnter the node data to insert:");
+    scanf("%d", &num);
 
-//     printf("\nEnter the node data after which you want to insert:");
-//     scanf("%d",&nodedata);
+    printf("Do you want to insert the node at the very beginning? 1/0 : ");
+    scanf("%d", &nodeAtFront);
 
-//     //Logic if the node data is found in head
-//     if (head->data == nodedata)
-//     {
-//         tmp->data=num;
+    if (!nodeAtFront)
+    {
+        printf("Do you want to insert the node at the very end? 1/0 : ");
+        scanf("%d", &nodeAtEnd);
+    }
 
-//     }
-    
-// }
+    if (nodeAtFront || nodeAtEnd)
+    {
+        //Insertion of node at front
+        if (nodeAtFront)
+        {
+            tmp->data = num;
+            tmp->next = head;
+            head = tmp;
+            printf("\nThe updated node list is: \n");
+            read();
+            return;
+        }
+        //Insertion of node at the end
+        if (nodeAtEnd)
+        {
+            while (tmp2->next != NULL)
+            {
+                tmp2 = tmp2->next;
+            }
+            tmp->data = num;
+            tmp->next = NULL;
+            tmp2->next = tmp;
+            printf("\nThe updated node list is: \n");
+            read();
+            return;
+        }
+    }
+
+    //Insertion of the node at the midle
+    printf("\nEnter the node data after which you want to insert:");
+    scanf("%d", &nodedata);
+
+    //Logic if the node data is found in head
+    while (found || (tmp2->next != NULL && !found))
+    {
+        if (tmp2->data == nodedata)
+        {
+            found = 1;
+            tmp->data = num;
+            tmp->next = tmp2->next;
+            tmp2->next = tmp;
+            break;
+        }
+        tmp2 = tmp2->next;
+    }
+    if (found)
+    {
+        printf("\n Your element was found\n");
+    }
+    else
+    {
+        printf("\n Your element was not found\n");
+    }
+
+    printf("\nThe updated node list is: \n");
+    read();
+}
 
 void main()
 {
 
     create();
     read();
-    update();
-    delete();
+    insertionInNode();
+    // delete();
 }
