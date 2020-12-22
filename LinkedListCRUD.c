@@ -247,9 +247,42 @@ void insertionInNode()
 
 void main()
 {
+    int choice;
 
-    create();
-    read();
-    insertionInNode();
+    // create();
+    // read();
+    // insertionInNode();
     // delete();
+    while (choice)
+    {
+        printf("\n********Linked List Operations**********\n Press:\n 1> Add data to the list \n 2> Print Linked Lst data \n 3> Insert in node \n 4> Update existing data in the node \n 5> Delete data from the node \n 0> Terminate the program \n Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            create();
+            break;
+        
+        case 2: 
+            read();
+            break;
+
+        case 3:
+            insertionInNode();
+            break;
+
+        case 4: 
+            update();
+            break;
+        case 5:
+            delete();
+            break;
+        case 0:
+            continue;
+
+        default:
+            break;
+        }
+    }   
+    
 }
