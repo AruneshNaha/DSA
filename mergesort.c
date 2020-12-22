@@ -48,7 +48,7 @@ void merge(int *arr, int low, int mid, int high)
 
 void mergeSort(int *A, int low, int high)
 {
-    int mid = (low + high) / 2;
+    int mid = low + (high - low) / 2;
 
     if (low < high)
     {
@@ -60,15 +60,15 @@ void mergeSort(int *A, int low, int high)
 
 int main()
 {
-    int A[] = {9, 3, 7, 5, 6, 4, 8, 2};
+    int A[] = {12, 11, 13, 5, 6, 7 };
     // int A[] = {1,2,3,4,5,6};
     printf("The array before sorting: \n");
-    printArray(A, 8); //Printing the array before sorting
+    printArray(A, 6); //Printing the array before sorting
 
-    mergeSort(A, 0, 7); //Function to sort array
+    mergeSort(A, 0, 5); //Function to sort array
 
     printf("\nThe array after sorting: \n");
-    printArray(A, 8); //Printing the array after sorting
+    printArray(A, 6); //Printing the array after sorting
 
     return 0;
 }
