@@ -2,12 +2,14 @@
 
 int size,front=-1,rear=0;
 
-void push(int *arr){
+//enqueueF(), enqueueR(), deQueueF(), deQueueR()
+
+void enQueueR(int *arr){
     int num;
     printf("\nEnter the element you want to push: ");
     scanf("%d",&num);
 
-    if (rear!=size)
+    if (rear!=size )
     {
         printf("\nFront value: %d rear value: %d", front, rear);
         arr[rear] = num;
@@ -18,13 +20,47 @@ void push(int *arr){
     } 
 }
 
-int pop(int *arr){
-    int n;
-    if (front==rear-1)
+void enQueueF(int *arr){
+    int num;
+    printf("\nEnter the element you want to push: ");
+    scanf("%d",&num);
+
+    if (front == -1)
     {
-        front=-1;
-        rear=0;
-        printf("\nQueue is empty");
+        printf("\nThe queue is full from front!");
+    }else
+    {
+        
+         printf("\nFront value: %d rear value: %d", front, rear);
+        arr[front] = num;
+        front--;
+    } 
+}
+
+int deQueueR(int *arr){
+    int n;
+    if (rear-1<=front || rear==0)
+    {
+        printf("Queue is empty from rear!");
+        return -999;
+    }
+    else
+    {
+        n=arr[--rear];
+        printf("\nFront value: %d rear value: %d", front, rear);        
+        return n;
+    }
+    
+    
+}
+
+int deQueueF(int *arr){
+    int n;
+    //rear==front+1 ||
+    // || rear==0 
+    if (front >= rear-1 )
+    {
+        printf("\nQueue is empty from front");
         return -999;
     }
     else
@@ -65,23 +101,35 @@ void main(){
 
     while (choice)
     {
-        printf("\nPress \n1> push \n2> pop \n3> display the entire queue \n0> End program \nEnter your choice: ");
+        printf("\nPress \n1> push from front \n2> push from rear \n3> pop from front \n4> pop from rear \n5> Display the queue \n0> End program \nEnter your choice: ");
         scanf("%d", &choice);
         switch (choice)
         {
         case 1:
-            push(queue); 
+            enQueueF(queue); 
             break;
 
         case 2:
-            num = pop(queue);
+            enQueueR(queue);
+            break;
+
+        case 3:
+            num = deQueueF(queue);
+            if (num!=-999)
+            {
+                printf("\nData removed: %d", num);
+            }            
+            break;
+
+        case 4:
+            num = deQueueR(queue);
             if (num!=-999)
             {
                 printf("\nData removed: %d", num);
             }            
             break;
         
-        case 3:
+        case 5:
             display(queue);
             break;
 
