@@ -1,3 +1,11 @@
+/*
+    Diagonal Matrices
+    5 0 0 0
+    0 8 0 0
+    0 0 9 0
+    0 0 0 12
+*/
+
 #include<stdio.h>
 #include<conio.h>
 
