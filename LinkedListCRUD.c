@@ -247,7 +247,7 @@ void insertionInNode()
 
 void main()
 {
-    int choice;
+    int choice=1;
 
     // create();
     // read();
